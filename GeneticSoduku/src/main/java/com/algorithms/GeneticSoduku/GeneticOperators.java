@@ -1,9 +1,27 @@
 package com.algorithms.GeneticSoduku;
 
 import java.util.Random;
+import java.util.Vector;
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.atomic.AtomicInteger;
+
+import com.algorithms.GeneticSoduku.Threads.BestFitSelection;
+import com.algorithms.GeneticSoduku.Threads.CrossOver;
+import com.algorithms.GeneticSoduku.Threads.Mutate;
 
 public class GeneticOperators {
 
+	static CopyOnWriteArrayList<Sudoku> list;
+	static CountDownLatch latch = new CountDownLatch(Main.populationSize);
+	
+	public static void mutateOrCross(Vector<Sudoku> sudokus) throws InterruptedException{
+		list = new CopyOnWriteArrayList<>(sudokus);
+		new Thread(new Mutate(latch,list)).start();
+		new Thread(new CrossOver(latch,list)).start();
+		latch.await();
+	}
+	
     public static int[] initialize(int[] gene) {
         int dimensions = (int) Math.sqrt(gene.length);
 

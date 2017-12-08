@@ -1,5 +1,6 @@
 package com.algorithms.GeneticSoduku;
 
+import java.util.List;
 import java.util.Vector;
 
 public class Sudoku {
@@ -15,8 +16,8 @@ public class Sudoku {
     }
 
 
-    public static Sudoku bestSelection(Vector<Sudoku> sudokus) {
-        Sudoku min = sudokus.firstElement();
+    public static Sudoku bestSelection(List<Sudoku> sudokus) {
+        Sudoku min = sudokus.get(0);
         for (Sudoku sudoku : sudokus)
             if (sudoku.fitnessValue < min.fitnessValue)
                 min = sudoku;
@@ -24,7 +25,7 @@ public class Sudoku {
         return min;
     }
 
-    public static Sudoku rouletteSelection(Vector<Sudoku> sudokus) {
+    public static Sudoku rouletteSelection(List<Sudoku> sudokus) {
         int max = 0;
         for (Sudoku sudoku : sudokus)
             if (sudoku.fitnessValue > max) max = sudoku.fitnessValue;
