@@ -17,7 +17,7 @@ public class Main {
 	public static void main(String[] args) {
 
 		long timeStart = System.currentTimeMillis();
-		LOGGER.debug("Started at ::"+new Date(timeStart).toLocaleString());
+		LOGGER.info("Started at ::"+new Date(timeStart).toLocaleString());
 
 
 		Random random = new Random(9);
@@ -30,7 +30,7 @@ public class Main {
 		Sudoku solution = null;
 		while (currentSudoku.getFitnessValue() != 0 && iteration < maxIterations) {
 			//if(iteration%100==0)
-			LOGGER.debug("current: " + currentSudoku + ", iteration: " + iteration);
+			LOGGER.info("current: " + currentSudoku + ", iteration: " + iteration);
 
 			List<Sudoku> population = new ArrayList<>();
 
@@ -46,7 +46,7 @@ public class Main {
 					population.get(i).crossover(population.get(random.nextInt(population.size())));
 
 				if(population.get(i).getFitnessValue()==0){
-					LOGGER.debug("**********Found Solution");
+					LOGGER.info("**********Found Solution");
 					solution = population.get(i);
 					break;
 				}
@@ -79,9 +79,9 @@ public class Main {
 		}
 
 
-		LOGGER.debug("goal: " + currentSudoku + ", iteration: " + iteration);
+		LOGGER.info("goal: " + currentSudoku + ", iteration: " + iteration);
 		System.out.println("Total Time (Sec) " + (System.currentTimeMillis() - timeStart)/1000);
-		LOGGER.debug("Finished at ::"+new Date(System.currentTimeMillis() - timeStart).toLocaleString());
+		LOGGER.info("Finished at ::"+new Date(System.currentTimeMillis() - timeStart).toLocaleString());
 	}
 
 
