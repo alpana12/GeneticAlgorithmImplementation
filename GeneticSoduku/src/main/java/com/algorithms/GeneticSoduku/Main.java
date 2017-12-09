@@ -70,6 +70,7 @@ public class Main {
 				else
 					currentSudoku = Sudoku.rouletteSelection(population);				
 			}else{
+				currentSudoku = solution;
 				break;
 			}
 

@@ -12,9 +12,7 @@ public class Sudoku {
     public Sudoku(int[] gene) {
         this.gene = gene;
         fitnessValue = fitness();
-
     }
-
 
     public static Sudoku bestSelection(List<Sudoku> sudokus) {
         Sudoku min = sudokus.get(0);
@@ -149,13 +147,13 @@ public class Sudoku {
         return fitness;
     }
 
-    public static int[] twoDToOneD(int[][] twoD) {
+    /*public static int[] twoDToOneD(int[][] twoD) {
         int[] oneD = new int[twoD.length * twoD.length];
         for (int i = 0; i < oneD.length; i++)
             oneD[i] = twoD[i / twoD.length][i % twoD.length];
 
         return oneD;
-    }
+    }*/
 
     public static int[][] oneDToTwoD(int[] oneD) {
         int[][] twoD = new int[(int) Math.sqrt(oneD.length)][(int) Math.sqrt(oneD.length)];
