@@ -14,23 +14,25 @@ public class Main {
 
 	public static int populationSize = 1500;
 
+	static long timeStart = System.currentTimeMillis();
+	
 	public static void main(String[] args) {
 
-		long timeStart = System.currentTimeMillis();
+		System.out.println("Started at ::"+new Date(timeStart).toLocaleString());
 		LOGGER.info("Started at ::"+new Date(timeStart).toLocaleString());
 
 
 		Random random = new Random(9);
 
-		int maxIterations =  100000;
+		int maxIterations =  10000;
 		int iteration = 0;
 		Sudoku.setInitialGene(new int[]{5,3,0,0,7,0,0,1,0,6,0,0,1,9,5,0,4,8,0,9,8,0,0,0,0,6,0,8,0,0,0,6,0,0,0,3,4,0,0,8,0,3,0,0,1,7,0,0,0,2,0,0,0,6,0,6,0,0,0,0,2,8,0,0,0,0,4,1,9,0,0,5,0,0,5,0,8,0,0,7,9});
 		//Sudoku.setInitialGene(new int[]{1, 0, 0, 4, 0, 0, 0, 0, 0, 3, 2, 0, 0, 0, 0, 0});
 		Sudoku currentSudoku = new Sudoku(GeneticOperators.initialize(Sudoku.getInitialGene().clone()));
 		Sudoku solution = null;
 		while (currentSudoku.getFitnessValue() != 0 && iteration < maxIterations) {
-			//if(iteration%100==0)
-			LOGGER.info("current: " + currentSudoku + ", iteration: " + iteration);
+			if(iteration%100==0)
+				LOGGER.info("current: " + currentSudoku + ", iteration: " + iteration);
 
 			List<Sudoku> population = new ArrayList<>();
 
@@ -77,6 +79,12 @@ public class Main {
 
 			iteration++;
 		}
+		if(currentSudoku.getFitnessValue()!=0){
+			LOGGER.info("***************RESTARTING**********");
+			System.out.println("Restarting");
+			main(args);			
+		}
+
 
 
 		LOGGER.info("goal: " + currentSudoku + ", iteration: " + iteration);
