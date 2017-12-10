@@ -19,7 +19,6 @@ public class Sudoku {
         for (Sudoku sudoku : sudokus)
             if (sudoku.fitnessValue < min.fitnessValue)
                 min = sudoku;
-
         return min;
     }
 
@@ -31,8 +30,6 @@ public class Sudoku {
         int sum = 0;
         for (Sudoku sudoku : sudokus)
             sum += max - sudoku.fitnessValue;
-        /*for (Sudoku sudoku : sudokus)
-            sudoku.setProbability((max - sudoku.fitnessValue) / (sum * 1.0));*/
 
         double random = Math.random() * sum;
         int i;
@@ -147,19 +144,10 @@ public class Sudoku {
         return fitness;
     }
 
-    /*public static int[] twoDToOneD(int[][] twoD) {
-        int[] oneD = new int[twoD.length * twoD.length];
-        for (int i = 0; i < oneD.length; i++)
-            oneD[i] = twoD[i / twoD.length][i % twoD.length];
-
-        return oneD;
-    }*/
-
     public static int[][] oneDToTwoD(int[] oneD) {
         int[][] twoD = new int[(int) Math.sqrt(oneD.length)][(int) Math.sqrt(oneD.length)];
         for (int i = 0; i < oneD.length; i++)
             twoD[i / twoD.length][i % twoD.length] = oneD[i];
-
         return twoD;
     }
 
@@ -188,14 +176,6 @@ public class Sudoku {
         this.fitnessValue = fitnessValue;
     }
 
-/*    public double getProbability() {
-        return probability;
-    }
-
-    public void setProbability(double probability) {
-        this.probability = probability;
-    }*/
-
     @Override
     public String toString() {
         String string = "Gene: ";
@@ -206,7 +186,6 @@ public class Sudoku {
         for (int i = 0; i < gene.length; i++)
             string += ((i % dimensions == 0) ? "\n" : "") + gene[i] + " ";
         string += "\nFitness: " + fitnessValue;
-
         return string;
     }
 }

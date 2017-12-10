@@ -14,6 +14,8 @@ public class GeneticOperators {
 
 	static CopyOnWriteArrayList<Sudoku> list;
 	static CountDownLatch latch = new CountDownLatch(Main.populationSize);
+	static Random random = Main.random;
+
 	
 	public static void mutateOrCross(Vector<Sudoku> sudokus) throws InterruptedException{
 		list = new CopyOnWriteArrayList<>(sudokus);
@@ -35,9 +37,9 @@ public class GeneticOperators {
     public static int[] randomMutation(int[] gene) {
         int dimensions = (int) Math.sqrt(gene.length);
         int[] mutation = gene;
-        int rand = new Random().nextInt(gene.length);
+        int rand = random.nextInt(gene.length);
         for (int i = 0; i < rand; i++)
-            mutation = mutation(gene, new Random().nextInt(gene.length), new Random().nextInt(dimensions) + 1);
+            mutation = mutation(gene, random.nextInt(gene.length), random.nextInt(dimensions) + 1);
 
 
         return mutation;
@@ -45,7 +47,7 @@ public class GeneticOperators {
 
     public static int[] mutation(int[] gene) {
         int dimensions = (int) Math.sqrt(gene.length);
-        int[] mutation = mutation(gene, new Random().nextInt(gene.length), new Random().nextInt(dimensions) + 1);
+        int[] mutation = mutation(gene, random.nextInt(gene.length), random.nextInt(dimensions) + 1);
 
         return mutation;
     }
@@ -58,15 +60,15 @@ public class GeneticOperators {
     }
 
     public static int[][] crossover(int[] gene1, int[] gene2) {
-        int start = new Random().nextInt(gene1.length);
-        int end = new Random().nextInt(gene1.length - start) + start;
+        int start = random.nextInt(gene1.length);
+        int end = random.nextInt(gene1.length - start) + start;
 
         return crossover(gene1, gene2, start, end);
     }
 
     public static int[][] crossover(int[] gene1, int[] gene2, boolean singlePoint) {
-        int start = (singlePoint) ? 0 : new Random().nextInt(gene1.length);
-        int end = new Random().nextInt(gene1.length - start) + start;
+        int start = (singlePoint) ? 0 : random.nextInt(gene1.length);
+        int end = random.nextInt(gene1.length - start) + start;
 
         return crossover(gene1, gene2, start, end);
     }
