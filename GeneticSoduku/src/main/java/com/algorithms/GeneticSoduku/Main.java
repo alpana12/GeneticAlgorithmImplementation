@@ -46,7 +46,7 @@ public class Main {
 					population.get(i).crossover(population.get(random.nextInt(population.size())));
 
 				if(population.get(i).getFitnessValue()==0){
-					LOGGER.info("**********Found Solution");
+					System.out.println("**********Found Solution");
 					solution = population.get(i);
 					break;
 				}
