@@ -66,4 +66,5 @@ For Genetic :
 For a standard 9 * 9 sudoku puzzle, the program takes 100 to 200 seconds. The final ouput can be seen in logs\app-info.log file. 
 
 Below are the sample screenshots.
+![Alt text](https://github.com/alpana12/INFO6205_25/blob/master/ScreenShots/MainSample.JPG "Sample output")
 
