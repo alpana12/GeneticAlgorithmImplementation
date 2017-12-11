@@ -63,7 +63,7 @@ For Genetic :
 - Testing the crossover function.
 
 # Screenshots:
-For a standard 9 * 9 sudoku puzzle, the program takes 150 to 300 seconds. The final ouput can be seen in logs\app-info.log file. 
+For a standard 9 * 9 sudoku puzzle, the program takes 100 to 200 seconds. The final ouput can be seen in logs\app-info.log file. 
 
 Below are the sample screenshots.
 
